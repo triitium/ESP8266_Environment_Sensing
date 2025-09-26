@@ -10,21 +10,24 @@ void http_post(float temperature, float humidity, float pressure, float gas_resi
     HTTPClient http;
 
     http.begin(client, SERVER_URL);
-    http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+    http.addHeader("Content-Type", "application/json");  // set JSON content type
 
-    String postData = "apikey=" + String(API_KEY) +
-                      "&device=" + String(DEVICE_NAME) +
-                      "&temp=" + String(temperature) +
-                      "&hum=" + String(humidity) +
-                      "&pres=" + String(pressure) +
-                      "&gas=" + String(gas_resistance);
+    // build JSON payload
+    String jsonData = "{";
+    jsonData += "\"apikey\":\"" + String(API_KEY) + "\",";
+    jsonData += "\"device\":\"" + String(DEVICE_NAME) + "\",";
+    jsonData += "\"temperature\":" + String(temperature) + ",";
+    jsonData += "\"humidity\":" + String(humidity) + ",";
+    jsonData += "\"pressure\":" + String(pressure) + ",";
+    jsonData += "\"gas\":" + String(gas_resistance);
+    jsonData += "}";
 
-    int httpResponseCode = http.POST(postData);
+    int httpResponseCode = http.POST(jsonData);
     if (httpResponseCode > 0) {
-        Serial.print("HTTP Antwort: ");
+        Serial.print("HTTP response code: ");
         Serial.println(httpResponseCode);
     } else {
-        Serial.print("Fehler beim HTTP POST: ");
+        Serial.print("HTTP POST failed, error: ");
         Serial.println(httpResponseCode);
     }
 
