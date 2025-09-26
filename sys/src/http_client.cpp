@@ -10,9 +10,8 @@ void http_post(float temperature, float humidity, float pressure, float gas_resi
     HTTPClient http;
 
     http.begin(client, SERVER_URL);
-    http.addHeader("Content-Type", "application/json");  // set JSON content type
+    http.addHeader("Content-Type", "application/json");
 
-    // build JSON payload
     String jsonData = "{";
     jsonData += "\"apikey\":\"" + String(API_KEY) + "\",";
     jsonData += "\"device\":\"" + String(DEVICE_NAME) + "\",";
