@@ -10,12 +10,7 @@ This project implements a modular IoT environmental sensing solution using the *
 * **BME688 sensor** (temperature, humidity, pressure, gas resistance)
 * **Measurement averaging** using configurable `SAMPLE_SIZE`
 * **Configurable parameters** (WiFi, Server URL, API Key, Device Name) via `platformio.ini`
-* **HTTP POST** of averaged values in `application/x-www-form-urlencoded` format
-* **Clean, modular C++ structure**
-
-  * `sys/src/` for source files
-  * `sys/inc/` for header files
-  * `main.h` for central includes and helper functions
+* **HTTP POST** of averaged values in `application/json` format
 
 ---
 
