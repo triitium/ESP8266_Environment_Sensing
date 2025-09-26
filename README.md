@@ -14,27 +14,6 @@ This project implements a modular IoT environmental sensing solution using the *
 
 ---
 
-## Project Structure
-
-```
-ESP8266_Environment_Sensing/
-├── platformio.ini
-└── sys/
-    ├── main.cpp
-    ├── main.h
-    ├── src/
-    │   ├── wifi_manager.cpp
-    │   ├── bme688.cpp
-    │   └── http_client.cpp
-    └── inc/
-        ├── wifi_manager.h
-        ├── bme688.h
-        ├── http_client.h
-        └── config.h
-```
-
----
-
 ## Installation
 
 1. **Install PlatformIO**: [https://platformio.org/install](https://platformio.org/install)
