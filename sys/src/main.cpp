@@ -30,7 +30,7 @@ void loop() {
     float presAvg = presSum / SAMPLE_SIZE;
     float gasAvg  = gasSum / SAMPLE_SIZE;
 
-    print_sensor_values(tempAvg, humAvg, presAvg, gasAvg);
+    // print_sensor_values(tempAvg, humAvg, presAvg, gasAvg);    Commented, for better negligibly energy efficiency
     http_post(tempAvg, humAvg, presAvg, gasAvg);
 
     delay(300000);
