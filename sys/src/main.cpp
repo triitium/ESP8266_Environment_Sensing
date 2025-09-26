@@ -1,8 +1,4 @@
-#include <Arduino.h>
-#include "wifi_manager.h"
-#include "sensor_bme688.h"
-#include "http_client.h"
-#include "config.h"
+#include "main.h"
 
 void setup() {
     Serial.begin(115200);
@@ -10,8 +6,8 @@ void setup() {
     wifi_init();
 
     if (!sensor_init()) {
-        Serial.println("Sensor konnte nicht initialisiert werden. Stop.");
-        while (1) delay(1000);
+        Serial.println("Sensor init failed!");
+        while(1) delay(1000);
     }
 }
 
@@ -26,7 +22,7 @@ void loop() {
             presSum += p;
             gasSum += g;
         }
-        delay(100); // kurzes Intervall zwischen Samples
+        delay(100);
     }
 
     float tempAvg = tempSum / SAMPLE_SIZE;
@@ -34,10 +30,13 @@ void loop() {
     float presAvg = presSum / SAMPLE_SIZE;
     float gasAvg  = gasSum / SAMPLE_SIZE;
 
-    Serial.printf("Gemittelte Werte: T=%.2f°C H=%.2f%% P=%.2fhPa Gas=%.2fΩ\n",
-                  tempAvg, humAvg, presAvg, gasAvg);
-
+    print_sensor_values(tempAvg, humAvg, presAvg, gasAvg);
     http_post(tempAvg, humAvg, presAvg, gasAvg);
 
-    delay(300000); // 5 Minuten
+    delay(300000);
+}
+
+void print_sensor_values(float temperature, float humidity, float pressure, float gas) {
+    Serial.printf("Averages: T=%.2f°C H=%.2f%% P=%.2fhPa Gas=%.2fΩ\n",
+                  temperature, humidity, pressure, gas);
 }
