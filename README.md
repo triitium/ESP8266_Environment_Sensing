@@ -99,5 +99,5 @@ This project is licensed under the **MIT License**. You are free to use, modify,
 
 ## Notes
 
-* Ensure proper I²C connections for the BME688 sensor (SDA → D2, SCL → D1).
-* The HTTP POST function expects a server that can receive `application/x-www-form-urlencoded` data.
+* Ensure proper I²C connections for the BME688 sensor (SDA → D2, SCL → D1)
+* The HTTP POST function now sends data as **application/json**, so your server must be able to receive and parse JSON payloads
