@@ -1,4 +1,4 @@
-#include "sensor_bme688.h"
+#include "bme688.h"
 #include <Wire.h>
 #include <Adafruit_Sensor.h>
 #include <Adafruit_BME680.h>
